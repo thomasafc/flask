@@ -32,9 +32,18 @@ def convertVideo(videoName):
     cap = cv2.VideoCapture(vid)
     frames = [] # armazenar os frames
     count = 0 # contador para pegar cada frame
+
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    duration = frame_count/fps
+    seconds = frame_count/fps
+    miliseconds = seconds * 1000
+    frame_moment = int(miliseconds/num_of_frames)
+
+
     for j in range(num_of_frames): # aqui pegamos n frames de acordo com num_of_frames
         # 1000 = 1 segundo, 500 = meio segundo...
-        cap.set(cv2.CAP_PROP_POS_MSEC,(count*250)) # seta o momento do vídeo para pegar o frame
+        cap.set(cv2.CAP_PROP_POS_MSEC,(count*frame_moment)) # seta o momento do vídeo para pegar o frame
         ret, frame = cap.read() # pega de fato o frame, e se deu sucesso ou não
         if ret == True: # se deu sucesso...
             print('S=>', end="")
