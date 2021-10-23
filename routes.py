@@ -3,9 +3,11 @@ import os
 from flask import Flask, request
 from flask.helpers import send_file
 from werkzeug.utils import secure_filename
+#from tensorflow import keras
 from datetime import datetime
 from main import convertVideo
 from main import convertImage
+from main import callModel
 
 
 app = Flask("__name__", template_folder='templates')
@@ -31,7 +33,10 @@ def imageUpload():
 
     # Chama função para converter a imagem
     frames = convertImage(file.filename)
-    print(frames)
+
+    # Chama o modelo para traduzir a imagem
+    imageTranslation = callModel(frames)
+    print('Tradução => ' + imageTranslation)
 
     # Exclui o arquivo
     os.path.dirname(os.path.abspath(__file__))
@@ -39,7 +44,7 @@ def imageUpload():
     os.unlink(file.filename)
 
     # Retorna resposta de sucesso!
-    return getResponse(200, "Imagem enviada e convertida!")
+    return getResponse(200, imageTranslation)
 
 #Upload de Video
 @app.route('/videoUpload', methods=['POST'])
@@ -59,15 +64,18 @@ def videoUpload():
 
     # Chama função para converter o video
     frames = convertVideo(file.filename)
-    print(frames)
+    
+    # Chama o modelo para traduzir a imagem
+    videoTranslation = callModel(frames)
+    print('Tradução => ' + videoTranslation)
 
     # Exclui o arquivo
-    os.path.dirname(os.path.abspath(__file__))
-    os.chdir('videoUpload')
-    os.unlink(file.filename)
+    #os.path.dirname(os.path.abspath(__file__))
+    #os.chdir('videoUpload')
+    #os.unlink(file.filename)
 
     # Retorna resposta de sucesso!
-    return getResponse(200, "Video enviado e convertido com sucesso!")
+    return getResponse(200, videoTranslation)
 
 
 #CRIA RESPONSE

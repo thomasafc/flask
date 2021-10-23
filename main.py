@@ -1,18 +1,18 @@
 import os
-import zipfile
+#import zipfile
 import numpy as np
 import tensorflow as tf
-import sys
-import argparse
+#import sys
+#import argparse
 import cv2
-import PIL
+#import PIL
 import matplotlib.pyplot as plt
 
 from PIL import Image
 from tensorflow import keras
-from tensorflow.keras import layers
-from matplotlib import image
-from matplotlib import pyplot
+#from tensorflow.keras import layers
+#from matplotlib import image
+#from matplotlib import pyplot
 
 train_size        = 1 # Tamanho dos dados para treinamento
 max_vid_per_class = 1 # Número máximo de vídeos por classe
@@ -22,12 +22,16 @@ height            = 48 # Altura da imagem
 num_of_channels   = 1  # Número de canais da imagem (cinza, RGB, etc.)
 num_of_classes    = 2  # Número de classes que serão utilizadas
 
+class_names = {
+    "Acontecer": 0, "Aluno": 1, "Amarelo": 2, "America": 3, "Aproveitar": 4, "Bala": 5, "Banco": 6, "Banheiro": 7, "Barulho": 8, "Cinco": 9
+}
 
 def convertVideo(videoName):
     dataVideo = [] # armazena os frames
 
     # caminho do vídeo
     vid = str('./videoUpload/' + videoName)
+
     # lê o vídeo
     cap = cv2.VideoCapture(vid)
     frames = [] # armazenar os frames
@@ -35,7 +39,6 @@ def convertVideo(videoName):
 
     fps = cap.get(cv2.CAP_PROP_FPS)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    duration = frame_count/fps
     seconds = frame_count/fps
     miliseconds = seconds * 1000
     frame_moment = int(miliseconds/num_of_frames)
@@ -96,3 +99,22 @@ def convertImage(imageName):
     # Retorna vetor com dados da imagem
     return dataImage
 
+
+def callModel(frames):
+    print(tf.__version__)
+    # Chamando o modelo da rede treinada
+    newModel = keras.models.load_model('./model/')
+    prediction = newModel.predict(np.expand_dims(frames[0], axis=0))[0]
+    bestAccuracy = 0
+    bestName = ''
+    for predict, name in zip(prediction, class_names):
+        accuracy = (100 * predict)
+        if (accuracy > bestAccuracy):
+            bestAccuracy = accuracy
+            bestName = name
+        print(
+            "%.2f ==> %s"
+            % (accuracy, name)
+        )
+
+    return bestName
