@@ -38,9 +38,8 @@ def imageUpload():
     print('Tradução => ' + imageTranslation)
 
     # Exclui o arquivo
-    os.path.dirname(os.path.abspath(__file__))
-    os.chdir('imageUpload')
-    os.unlink(file.filename)
+    file_path = os.path.abspath(IMAGE_UPLOAD_FOLDER + '\\' + file.filename)
+    os.remove(file_path)
 
     # Retorna resposta de sucesso!
     return getResponse(200, imageTranslation)
@@ -69,9 +68,8 @@ def videoUpload():
     print('Tradução => ' + videoTranslation)
 
     # Exclui o arquivo
-    #os.path.dirname(os.path.abspath(__file__))
-    #os.chdir('videoUpload')
-    #os.unlink(file.filename)
+    file_path = os.path.abspath(VIDEO_UPLOAD_FOLDER + '\\' + file.filename)
+    os.remove(file_path)
 
     # Retorna resposta de sucesso!
     return getResponse(200, videoTranslation)
