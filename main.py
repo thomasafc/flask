@@ -1,18 +1,11 @@
 import os
-#import zipfile
 import numpy as np
 import tensorflow as tf
-#import sys
-#import argparse
 import cv2
-#import PIL
 import matplotlib.pyplot as plt
 
 from PIL import Image
 from tensorflow import keras
-#from tensorflow.keras import layers
-#from matplotlib import image
-#from matplotlib import pyplot
 
 train_size        = 1 # Tamanho dos dados para treinamento
 max_vid_per_class = 1 # Número máximo de vídeos por classe
