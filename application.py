@@ -38,7 +38,7 @@ def imageUpload():
     print('Tradução => ' + imageTranslation)
 
     # Exclui o arquivo
-    file_path = os.path.abspath(IMAGE_UPLOAD_FOLDER + '\\' + file.filename)
+    file_path = os.path.abspath(IMAGE_UPLOAD_FOLDER + '/' + file.filename)
     os.remove(file_path)
 
     # Retorna resposta de sucesso!
@@ -68,7 +68,7 @@ def videoUpload():
     print('Tradução => ' + videoTranslation)
 
     # Exclui o arquivo
-    file_path = os.path.abspath(VIDEO_UPLOAD_FOLDER + '\\' + file.filename)
+    file_path = os.path.abspath(VIDEO_UPLOAD_FOLDER + '/' + file.filename)
     os.remove(file_path)
 
     # Retorna resposta de sucesso!
