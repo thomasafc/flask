@@ -14,6 +14,15 @@ IMAGE_UPLOAD_FOLDER = os.path.join(os.getcwd(), 'imageUpload')
 VIDEO_UPLOAD_FOLDER = os.path.join(os.getcwd(), 'videoUpload')
 
 
+@application.route("/")
+def index():
+    return 'Hello Route /'
+
+@application.route('/testGet', methods=["GET"])
+def getMethod(): 
+    return 'Hello Route Get'
+
+
 #Upload de imagem
 @application.route('/imageUpload', methods=['POST'])
 def imageUpload():
