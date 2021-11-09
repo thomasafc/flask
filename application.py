@@ -87,4 +87,4 @@ def getResponse(status, message, recordName=False, record=False):
     return response
 
 #RUN
-application.run()
+application.run(host="0.0.0.0")
