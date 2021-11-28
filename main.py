@@ -15,31 +15,31 @@ height            = 48 # Altura da imagem
 num_of_channels   = 1  # Número de canais da imagem (cinza, RGB, etc.)
 num_of_classes    = 2  # Número de classes que serão utilizadas
 
-class_names = {
-    "Acontecer"  : 0, 
-    "Aluno"      : 1, 
-    "Amarelo"    : 2, 
-    "America"    : 3, 
-    "Aproveitar" : 4, 
-    "Bala"       : 5, 
-    "Banco"      : 6, 
-    "Banheiro"   : 7, 
-    "Barulho"    : 8, 
-    "Cinco"      : 9
-}
+# class_names = {
+#     "Acontecer"  : 0, 
+#     "Aluno"      : 1, 
+#     "Amarelo"    : 2, 
+#     "America"    : 3, 
+#     "Aproveitar" : 4, 
+#     "Bala"       : 5, 
+#     "Banco"      : 6, 
+#     "Banheiro"   : 7, 
+#     "Barulho"    : 8, 
+#     "Cinco"      : 9
+# }
 
-#class_names = {
-#    "A"          : 0, 
-#    "Acontecer"  : 1, 
-#    "Aluno"      : 2, 
-#    "Amarelo"    : 3, 
-#    "America"    : 4, 
-#    "Aproveitar" : 5, 
-#    "B"          : 6, 
-#    "C"          : 7, 
-#    "D"          : 8, 
-#    "E"          : 9 
-#}
+class_names = {
+   "A"          : 0, 
+   "Acontecer"  : 1, 
+   "Aluno"      : 2, 
+   "Amarelo"    : 3, 
+   "America"    : 4, 
+   "Aproveitar" : 5, 
+   "B"          : 6, 
+   "C"          : 7, 
+   "D"          : 8, 
+   "E"          : 9 
+}
 
 def convertVideo(videoName):
     dataVideo = [] # armazena os frames
